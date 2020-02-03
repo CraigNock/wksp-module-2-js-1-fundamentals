@@ -21,6 +21,7 @@ let grandson = 'Morty';
     - `const` for variables that _will never change_
     - `let` for variables that _may change_
 
+if const = object; you can still change the object properties
 ---
 
 ## Naming conventions
@@ -43,11 +44,11 @@ For clarity, we often want to name variables with multi-word expressions.
 There are many ways to do this.
 
 - Camel Case
-    - ``
+    - `boyHowdy`
 - Dashes
-    - ``
+    - Don't use dashes unless it's css
 - Underscores
-    - ``
+    - `boy_howdy`
 
 ---
 

@@ -13,7 +13,12 @@ There are 6 basic types in JavaScript.
 
 ```js
 // Examples
-
+"beef"
+true
+null
+324432
+[a1,a2]
+{a:1,b:2,c:3}
 ```
 
 If you are not sure of the type of a given value, you can use `typeof <VALUE>`
@@ -33,6 +38,7 @@ They are equally good... sort of.
 ---
 
 ### Backticks \`\`
+string literals
 
 - Strings wrapped in backticks have a super power called, interpolation.
 - Interpolation is a way of inserting JavaScript into your strings.
@@ -92,7 +98,7 @@ Numbers are exactly what you would expect them to be: numeric values.
 - They can be fractional.
     - `12.75`
     - `2.998e8`
-- Calculations with integers will always be precise, but this is not quite true for fractional numbers.
+- Calculations with integers will always be precise, but this is not quite true for fractional numbers. (like 20 decmils in)
 
 ---
 
@@ -160,14 +166,36 @@ Of course comparison operators and logical operators are usually combined in an 
 // Look at these expressions below and determine whether they evaluate to true or false
 
 1. true || false
+.true
 2. false && false
+.false
 3. 1 < 2 && 2 > 1
+.true
 4. 31 < 13 || 1 < 2 && 3 > 1
+.true
 5. 400 <= 400 && 399 < 400 && (30 > 31 || 400 > 31)
+.true
 6. true && false && false || false && true
+.false
 7. true && false || true || false
+.true
 8. true && false && false || false && true ? true && false && false || false && true : 1 < 2 && 2 > 1
+.false ? false : true
+.true
+
+if (x) ? a : b
+if x true, output a
+if x false, output b
+
+let gender = 'male'
+
+`Hello ${gender === 'male ? 'sir' : 'madame'}`
+
+
+*|| stops evaluating as soon as it finds a true. Does not bother continuing to check other values.
 ```
+
+
 
 ---
 
@@ -178,9 +206,14 @@ Of course comparison operators and logical operators are usually combined in an 
 - `NaN` is not equivalent to anything – including another `NaN`!
 - Automatic type conversion 😲
     - `8 * null`
+    0
     - `"5" - 1`
+    4
     - `"5" + 1`
+    51
     - TODO: add a few more weirdnesses
+
+***Do not rely on type conversion
 
 ```js
 // Examples
@@ -202,6 +235,10 @@ The following values are ALWAYS _falsy_:
 - `undefined`
 - `NaN`
 
+basically if it has NO value
+
+arrays and objects etc are an object
+
 EVERYTHING else is _truthy_. Everything else.
 
 - '0' (a string)
@@ -222,7 +259,7 @@ For more details, you can check out this [Sitepoint page](https://www.sitepoint.
 - Arrays are sequences of anything. Strings, numbers, booleans, arrays, other things we haven't learned about yet.
 - You can declare an array by using [ ] square brackets.
 - We separate the elements of an array with a comma.
-- Arrays are mutable.
+- Arrays are mutable. (we can go back and change it)
 
 ```js
 ['bacon', undefined, 900, true]
@@ -242,9 +279,13 @@ We reference the element of an array by its position (index) in the array.
 let anArrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 1. anArrayOfNumbers[0]
+->1
 2. anArrayOfNumbers[5]
+->6
 3. anArrayOfNumbers[9]
+->10
 4. anArrayOfNumbers[10]
+->undefined
 ```
 
 ---
@@ -256,7 +297,9 @@ let anArrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 let anArrayOfNumbers = ['bacon', undefined, 900, true]
 
 1. How do we access the value 900?
+->arrayofnumbers[2]
 2. How do we access the value `true`?
+->arrayofnumbers[3]
 
 ```
 
@@ -278,9 +321,13 @@ let table = [
 ]
 
 1. table[0][0]
+->1
 2. table[5][5]
+->36
 3. table[2][3]
+->21
 4. How would we access the value 27?
+-> table [3][4]
 ```
 
 ---
@@ -294,8 +341,11 @@ let data = [0, [], [], [1,2,3, [4]]]
 ```
 
 1. How would you access the value `0`?
+->data[0]
 2. How would you access the value `3`?
+->data[3][2]
 3. How would you access the value `4`?
+->data[3][3][0]
 
 ---
 
@@ -303,13 +353,23 @@ let data = [0, [], [], [1,2,3, [4]]]
 
 Very broadly, an object can be defined as an unordered collection of key/value pairs. 
 
+PROPERTY=
+
+KEY:VALUE
+
+NAME:VALUE
+
 `{'givenName': 'Yoda', 'surname': undefined, 'age': 900}`
 
 This object has 3 properties.
 
+**Dont need to use '' or "" for names/keys INSIDE the object. referring outside will need to use
+
 ```js
 // Example
 "it has a property with name 'givenName' and value of 'Yoda' of type string"
+
+
 
 ```
 
@@ -344,7 +404,12 @@ Group the following items together according to their type:
 
 ```js
 { label: 'corn', price: 5.3 + '$' };
+
+2
+
 { ISBN: 53532, isAvailable: true, author: 'Nakamoto' };
+
+3
 
 ```
 
@@ -360,8 +425,13 @@ Values in objects can be accessed with
 ```js
 // Example
 let person = {name: 'Bob', age: 23};
-const otherPerson = {name: 'Joe', age: 31, height: '170cm'};
 
+person.name //==='bob'
+
+const otherPerson = {name: 'Joe', age: 31, height: '170cm'};
+otherPerson['name'] // ==='Joe'
+
+***has to be 'name' not name
 ```
 
 ---
@@ -374,9 +444,9 @@ let person = {name: 'Bob', age: 23};
 let name = 'John';
 
 // What is the value of the following expressions?
-1. person.name
-2. person['name']
-3. person[name]
+1. person.name // 'bob'
+2. person['name'] // 'bob'
+3. person[name] // looks for a KEY of 'John' inside the object === person['John]
 
 ```
 
@@ -391,9 +461,10 @@ let person = {name: 'bob', age: 23};
 let key = 'name';
 
 // What is the value of the following expressions:
-1. person.key
-2. person['key']
-3. person[key]
+1. person.key // undefined
+** however person.key = 21 would add key to the object
+2. person['key'] // undefined
+3. person[key] // 'bob'
 
 ```
 
@@ -402,5 +473,6 @@ let key = 'name';
 - Every data type that we have worked with (numbers, booleans, strings, arrays, functions) is an object.
 - An object is the combination of data and logic.
 - Objects have something called methods.
-
+ 
+ thus there are methods to use on numbers etc that use dot notation
 ---

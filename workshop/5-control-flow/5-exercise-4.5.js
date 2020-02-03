@@ -13,7 +13,13 @@
 // 1 is odd
 // 2 is even
 // ...
-
+for (let number = 1; number <=15; number ++) {
+    if (number % 2 === 0) {
+        console.log('Even:' + number);
+    } else {
+        console.log('Odd:' + number)
+    }
+}
 
 
 // many other possibilities here.
