@@ -37,7 +37,7 @@ if (condition) {
 let number = 20;
 if (number > 16) {
     console.log('Hold');
-}
+} // hold
 ```
 
 ---
@@ -48,7 +48,7 @@ if (number > 16) {
     console.log('Hold');
 } else {
     console.log('Hit me');
-}
+} // hold
 ```
 
 ---
@@ -60,12 +60,26 @@ Turn the following sentences into valid JavaScript `if` statements. _Use console
 ```js
 // 1. If it rains, I stay home.
 let currentWeather = 'rainy';
+if (currentWeather === 'rainy') {
+    console.log('Stay Home');
 
 // 2. If I am hungry, I eat.
 let hunger = true;
+if (hunger) { // shorthand for ===true
+    console.log('Eat');
+} else {
+    console.log('Dont Eat, Fatty');
+}
 
 // 3. If it's 10pm, I go to bed. If not, I write code.
-let currentHour = 22;
+let hour = 22;
+if (hour >= 22 || hour < 6) {
+    console.log('Go to bed!');
+} else {
+    console.log('Time to code!');
+}
+
+
 
 ```
 
@@ -123,8 +137,16 @@ while (number <= 12) {
 
 Let's write a function that outputs 2^10 (two to the power of ten).
 
+
 ```js
 // Example
+let number = 1
+let power = 1;
+while (power <= 10) {
+    number = number * 2;
+    power ++;
+}
+console.log(number);
 
 
 ```
@@ -152,14 +174,21 @@ I wonder if there is a shorthand `for` this? 😉
 #### Example
 
 ```js
-for (let number = 0; number <=12; number = number + 1) {
+for (let number = 0; number <=12; number++) {
     if (number % 2 === 0) {
         console.log(number);
     }
-
 }
 
 // let's break that down.
+let number = 0;
+while(number <= 12) {
+    if (number % 2 === 0) {
+        console.log(number);
+    }
+    number = number + 1
+}
+
 ```
 
 ---
@@ -180,6 +209,9 @@ Write a program that output all of the numbers from 0 to 25
 
 ```js
 // code here
+for(let x=0 ; x<=25 ; x++) {
+    console.log(x)
+}
 
 ```
 
@@ -191,7 +223,16 @@ Write a program that output all of ODD the numbers from 0 to 25
 
 ```js
 // code here
+for(let x=0 ; x<=25 ; x++) {
+    if (x % 2 !==0){
+        console.log(x)
+    }
+}
 
+oooorr
+for( let i=1; i<=25; i+=2) {
+    console.log(i)
+}
 ```
 
 ---
@@ -202,7 +243,13 @@ Write a program that output all of the numbers from 0 to 25, but replaces all mu
 
 ```js
 // code here
-
+for(let x=0 ; x<=25 ; x++) {
+    if (x % 5 ===0 && x!==0){
+        console.log('five alive!');
+    } else {
+        console.log(x);
+    }
+}
 ```
 
 ---
